@@ -4,6 +4,7 @@ import android.util.Log;
 import android.widget.ListView;
 
 import com.akes.appweather.R;
+import com.akes.appweather.adapters.WeatherAdapter;
 import com.akes.appweather.dataStruct.WeatherStruct;
 import com.akes.appweather.module.ManagerModule;
 import com.akes.appweather.screen.MainActivity;

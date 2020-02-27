@@ -34,9 +34,7 @@ public class RetrofitApiModule {
     public void getWeatherByCity(final String city)
     {
         try {
-
-
-            Call<ResultList> call = worldWeatherAPI.getData(city, "json", 7);
+            Call<ResultList> call = worldWeatherAPI.getData(city, "json", 1);
             call.enqueue(new Callback<ResultList>() {
                 @Override
                 public void onResponse(Call<ResultList> call, Response<ResultList> response) {
@@ -51,8 +49,9 @@ public class RetrofitApiModule {
                         List<Weather> list = response.body().data.weather;
                         WeatherStruct weatherStruct = new WeatherStruct();
                         weatherStruct.setNameCity(city);
+                        weatherStruct.setTemperature(list.get(0).getAvgtempC());
                         if(list.get(0).getHourly().size()>0) {
-                            weatherStruct.setTemperature(list.get(0).getHourly().get(0).getTempC());
+                            //weatherStruct.setTemperature(list.get(0).getHourly().get(0).getTempC());
                             weatherStruct.setHumidity(list.get(0).getHourly().get(0).humidity);
                             weatherStruct.setWind(list.get(0).getHourly().get(0).windspeedKmph);
                         }

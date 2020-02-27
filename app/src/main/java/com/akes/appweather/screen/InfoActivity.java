@@ -1,24 +1,21 @@
 package com.akes.appweather.screen;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.akes.appweather.R;
-import com.akes.appweather.dataStruct.Weather;
+import com.akes.appweather.adapters.InfoAdapter;
+import com.akes.appweather.dataStruct.Hourly;
 import com.akes.appweather.dataStruct.WeatherStruct;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class InfoActivity extends AppCompatActivity {
 
@@ -26,8 +23,6 @@ public class InfoActivity extends AppCompatActivity {
 
     ListView listView;
 
-
-    //FIXME VBS
     public static void startActivity(Context context, WeatherStruct weatherType)
     {
         Intent intent = new Intent(context, InfoActivity.class);
@@ -43,8 +38,8 @@ public class InfoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.info);
-        getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        getWindow().setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        //getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        getWindow().setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
         getSupportActionBar().hide();
 
         weatherType = new WeatherStruct();
@@ -61,10 +56,10 @@ public class InfoActivity extends AppCompatActivity {
         initList();
         initButton();
 
-        initListView(7);
+        initListView();
     }
 
-    public void initListView(int count)
+    public void initListView()
     {
         ArrayList<String> name = new ArrayList<>();
 
@@ -72,16 +67,19 @@ public class InfoActivity extends AppCompatActivity {
 
         WeatherStruct weatherStruct = hashMap.get(weatherType.getNameCity());
 
-        int size = weatherStruct.getArrayListWeather().size();
+        if(weatherStruct.getArrayListWeather().size()<=0) return;
 
-        for(int i=0;i<(count<size?count:weatherStruct.getArrayListWeather().size());i++)
-        {
-            name.add( weatherStruct.getArrayListWeather().get(i).date +  "    " +weatherStruct.getArrayListWeather().get(i).hourly.get(0).tempC+"°C" );
-        }
+        List<Hourly> listHourly = weatherStruct.getArrayListWeather().get(0).getHourly();
+
+//        for(int i=0;i<listHourly.size();i++)
+//        {
+//            name.add( listHourly.get(i).time +  "    " +
+//                      listHourly.get(i).tempC+"°C" + " " +
+//                      (listHourly.get(i).getWeatherDesc().size()>0?listHourly.get(i).getWeatherDesc().get(0).getValue():""));
+//        }
 
         // создаем адаптер
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, name);
+        InfoAdapter adapter = new InfoAdapter(this, listHourly);
 
         // присваиваем адаптер списку
         listView.setAdapter(adapter);
@@ -91,24 +89,6 @@ public class InfoActivity extends AppCompatActivity {
     private void initButton() {
         Button buttonCancel = findViewById(R.id.button26);
         Button buttonOk = findViewById(R.id.button44);
-
-        Button button5 = findViewById(R.id.button3);
-        Button button7 = findViewById(R.id.button2);
-
-        button5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                initListView(5);
-            }
-        });
-
-        button7.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                initListView(7);
-            }
-        });
-
         buttonCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

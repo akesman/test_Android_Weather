@@ -2,6 +2,10 @@ package com.akes.appweather.dataStruct;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Weather {
@@ -35,7 +39,8 @@ public class Weather {
     public String uvIndex;
     @SerializedName("hourly")
     @Expose
-    public List<Hourly> hourly = null;
+    public List<Hourly> hourly = new ArrayList<>();
+
     public int getAvgtempC() {
         return avgtempC;
     }
@@ -115,4 +120,5 @@ public class Weather {
     public void setHourly(List<Hourly> hourly) {
         this.hourly = hourly;
     }
+
 }
