@@ -21,6 +21,7 @@ projectFilesBackup/
 *.log
 *.bit
 *.class
+/app/release/
 
 # IntelliJ
 out/
