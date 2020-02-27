@@ -39,7 +39,7 @@ public class DatabaseWeatherModule {
 
             int nameColIndex =          c.getColumnIndex("NameCity");
             int humidityColIndex =      c.getColumnIndex("Humidity");
-            int precipitationColIndex = c.getColumnIndex("Precipitationaccuracy");
+            int dateColIndex =          c.getColumnIndex("Date");
             int temperatureColIndex =   c.getColumnIndex("Temperature");
             int windColIndex =          c.getColumnIndex("Wind");
             int timeDayIndex =          c.getColumnIndex("timeDay");
@@ -47,12 +47,12 @@ public class DatabaseWeatherModule {
             int weatherStatusIndex =    c.getColumnIndex("weatherStatus");
 
             do {
-
+                String str = c.getString(dateColIndex);
                 WeatherStruct weatherStruct = new WeatherStruct(c.getString(nameColIndex),
                         c.getInt(temperatureColIndex),
                         c.getInt(humidityColIndex),
                         c.getInt(windColIndex),
-                        c.getInt(precipitationColIndex));
+                        str);
 
 
                 //TODO считываем прогноз погоды за неделю
@@ -77,7 +77,7 @@ public class DatabaseWeatherModule {
 
                 }
                 weathers.add(weather);
-                
+
                 arrayListWeather.add(weatherStruct);
 
             } while (c.moveToNext());
@@ -92,11 +92,11 @@ public class DatabaseWeatherModule {
 
         ContentValues cv = new ContentValues();
 
-        cv.put("NameCity", weatherType.getNameCity());
-        cv.put("Humidity", weatherType.getHumidity());
-        cv.put("Precipitationaccuracy", weatherType.getPrecipitation_accuracy());
+        cv.put("NameCity",  weatherType.getNameCity());
+        cv.put("Humidity",  weatherType.getHumidity());
+        cv.put("Date",      weatherType.getDate());
         cv.put("Temperature", weatherType.getTemperature());
-        cv.put("Wind", weatherType.getWind());
+        cv.put("Wind",      weatherType.getWind());
 
         //TODO записываем прогноз погоды за неделю
         String timeDayList = "";
@@ -160,7 +160,7 @@ public class DatabaseWeatherModule {
             db.execSQL("create table weatherTable ("
                     + "NameCity text primary key,"
                     + "Humidity text,"
-                    + "Precipitationaccuracy text,"
+                    + "Date text,"
                     + "Temperature text,"
                     + "Wind text,"
                     + "timeDay text,"

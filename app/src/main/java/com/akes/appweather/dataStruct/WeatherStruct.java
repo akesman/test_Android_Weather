@@ -13,6 +13,7 @@ import java.util.ArrayList;
 
 public class WeatherStruct {
     String nameCity;
+    String date;
     int temperature;
     int humidity;
     int wind;
@@ -20,6 +21,7 @@ public class WeatherStruct {
     ArrayList<Weather> arrayListWeather;
     public WeatherStruct()
     {
+        this.date = "";
         this.nameCity = "";
         this.temperature = -1;
         this.humidity = -1;
@@ -29,12 +31,12 @@ public class WeatherStruct {
     }
 
 
-    public WeatherStruct(String nameCity, int temperature, int humidity, int wind, int precipitation_accuracy) {
+    public WeatherStruct(String nameCity, int temperature, int humidity, int wind, String date) {
         this.nameCity = nameCity;
         this.temperature = temperature;
         this.humidity = humidity;
         this.wind = wind;
-        this.precipitation_accuracy = precipitation_accuracy;
+        this.date = date;
         arrayListWeather = new ArrayList<>();
     }
 
@@ -91,4 +93,11 @@ public class WeatherStruct {
         arrayListWeather.add(weather);
     }
 
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
 }

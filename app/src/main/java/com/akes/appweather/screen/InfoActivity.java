@@ -53,10 +53,11 @@ public class InfoActivity extends AppCompatActivity {
             weatherType.setHumidity(b.getInt("humidity"));
         }
 
-        initList();
-        initButton();
 
+        initButton();
         initListView();
+        initList();
+
     }
 
     public void initListView()
@@ -69,14 +70,10 @@ public class InfoActivity extends AppCompatActivity {
 
         if(weatherStruct.getArrayListWeather().size()<=0) return;
 
-        List<Hourly> listHourly = weatherStruct.getArrayListWeather().get(0).getHourly();
+        weatherType.setDate(weatherStruct.getDate());
+        weatherType.setWind(weatherStruct.getWind());
 
-//        for(int i=0;i<listHourly.size();i++)
-//        {
-//            name.add( listHourly.get(i).time +  "    " +
-//                      listHourly.get(i).tempC+"°C" + " " +
-//                      (listHourly.get(i).getWeatherDesc().size()>0?listHourly.get(i).getWeatherDesc().get(0).getValue():""));
-//        }
+        List<Hourly> listHourly = weatherStruct.getArrayListWeather().get(0).getHourly();
 
         // создаем адаптер
         InfoAdapter adapter = new InfoAdapter(this, listHourly);
@@ -89,6 +86,7 @@ public class InfoActivity extends AppCompatActivity {
     private void initButton() {
         Button buttonCancel = findViewById(R.id.button26);
         Button buttonOk = findViewById(R.id.button44);
+        listView = findViewById(R.id.listView);
         buttonCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -104,10 +102,10 @@ public class InfoActivity extends AppCompatActivity {
     }
 
     private void initList() {
-        listView = findViewById(R.id.listView);
         ((TextView) findViewById(R.id.textView134)).setText(weatherType.getNameCity());
         ((TextView) findViewById(R.id.textView132)).setText(""+weatherType.getTemperature() + "°C");
         ((TextView) findViewById(R.id.textView84)).setText(""+weatherType.getHumidity() + "%");
+        ((TextView) findViewById(R.id.textView6)).setText(""+weatherType.getDate());
+        ((TextView) findViewById(R.id.textView4)).setText(""+weatherType.getWind() + " km/h");
     }
-
 }

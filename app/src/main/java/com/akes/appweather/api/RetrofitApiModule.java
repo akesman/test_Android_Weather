@@ -49,6 +49,7 @@ public class RetrofitApiModule {
                         List<Weather> list = response.body().data.weather;
                         WeatherStruct weatherStruct = new WeatherStruct();
                         weatherStruct.setNameCity(city);
+                        weatherStruct.setDate(list.get(0).date);
                         weatherStruct.setTemperature(list.get(0).getAvgtempC());
                         if(list.get(0).getHourly().size()>0) {
                             //weatherStruct.setTemperature(list.get(0).getHourly().get(0).getTempC());
