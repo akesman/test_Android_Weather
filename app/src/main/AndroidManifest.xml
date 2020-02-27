@@ -26,7 +26,6 @@
             android:label=""
             android:launchMode="singleInstance"
             android:noHistory="true"
-            android:screenOrientation="portrait"
             android:theme="@style/AppTheme">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -41,7 +40,6 @@
             android:label=""
             android:launchMode="singleInstance"
             android:noHistory="true"
-            android:screenOrientation="portrait"
             android:theme="@style/AppTheme">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
