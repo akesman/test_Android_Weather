@@ -6,17 +6,10 @@ import com.akes.appweather.R;
 import com.akes.appweather.dataStruct.WeatherStruct;
 import com.akes.appweather.module.ManagerModule;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-
 import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
-
 import java.util.ArrayList;
-import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -59,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    @Override
+    /*@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
@@ -80,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
+    }*/
 
 
     public void initScreen()
