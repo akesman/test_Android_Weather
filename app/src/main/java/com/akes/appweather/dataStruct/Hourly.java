@@ -2,6 +2,8 @@ package com.akes.appweather.dataStruct;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class Hourly {
@@ -24,6 +26,8 @@ public class Hourly {
     @SerializedName("winddirDegree")
     @Expose
     public String winddirDegree;
+    @Expose
+    private List<WeatherDesc> weatherDesc = new ArrayList<>();
     @SerializedName("winddir16Point")
     @Expose
     public String winddir16Point;
@@ -345,6 +349,10 @@ public class Hourly {
 
     public void setChanceofhightemp(String chanceofhightemp) {
         this.chanceofhightemp = chanceofhightemp;
+    }
+
+    public List<WeatherDesc> getWeatherDesc() {
+        return weatherDesc;
     }
 
     public String getChanceoffog() {
